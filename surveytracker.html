@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--Terrie-Ann Broomfield
+Survey Tracker - showing all surveys done by Rudy Mak Surveying Ltd.
+Sorted by Due dates-->
+<html>
+<head>
+  <meta charset="utf-8">
+   <!-- viewport --> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Raleway font--> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <title>RMSLtd Survey Tracker</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #heading{
+        position:absolute;
+        left:0px;
+        top:0px;
+        z-index:5;
+        background-color: rgba(87,87,87,0.7);
+        height:150px;
+        width:100%;
+        color:rgb(10,10,10);
+        padding: 0px;
+        padding-left: 0px;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        line-height: 12px;
+        border-radius: 20px;
+      }
+
+      #subheading{
+        line-height: 10px;
+        font-family: 'Raleway', sans-serif;
+      }
+    #body{
+        line-height: 15px;
+        font-family: 'Raleway', sans-serif;
+    }
+    #heading2{
+      position:absolute;
+        left:0px;
+        bottom:50px;
+        z-index:5;
+        background-color: rgba(87,87,87,0.8);
+        height:50px;
+        width: 450px;;
+        color:rgb(0, 0, 0);
+        padding: 0px;
+        padding-left: 0px;
+        text-align: center;
+        font-family: 'Raleway', sans-serif; 
+        line-height: 12px;
+        border-radius: 20px; 
+    }
+    /*logo format*/
+    #pic{
+      position: absolute;
+        bottom: 20px;
+        right: 10px;
+        z-index: 10;
+        padding: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.22/"></script>
+
+  <script>
+    require([
+      "esri/config",
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/ScaleBar",
+      "esri/widgets/Legend",
+      "esri/widgets/Popup"
+
+    ], function(esriConfig, WebMap, MapView, ScaleBar, Legend, Popup) {
+
+      esriConfig.apiKey = "AAPK144901099bb043dfbb877d13892dd5a8eZ4jROWPVn4PetSl3bZSbSYZvYbtfB8yR57A_S69h9jrwH6GVvIj5NBLXtiQxh1n";
+
+      const webmap = new WebMap({
+        portalItem: {
+          id: "c5b1fbf83b624e968cf30d14d53a91e9"
+        }
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: webmap
+
+      });
+
+      const scalebar = new ScaleBar({
+        view: view
+      });
+
+      view.ui.add(scalebar, "bottom-left");
+
+      const legend = new Legend ({
+        view: view
+      });
+      view.ui.add(legend, "bottom-right");
+
+      const popup = new Popup ({
+        view: view
+      });
+      view.ui.add(popup, "relative");
+
+  });
+  </script>
+</head>
+<body>
+  <div id="heading">
+    <h1>Survey Tracker</h1>
+    <div id="subheading">
+         <h2>Rudy Mak Surveying Ltd.</h2>
+    </div>
+    <div id="body">
+        <p>Survey Tracker - showing all surveys done by Rudy Mak Surveying Ltd. Sorted by Due dates.
+        </p>
+    </div>
+  </div>
+  <div id="heading2">
+    <h3>Click on location pin for more information.</h3>
+  </div>
+  <div id="viewDiv"></div>
+</body>
+</html>
